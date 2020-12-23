@@ -15,14 +15,12 @@ func main() {
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
 	// инициализируем канал, куда будут прилетать обновления от API
-	var ucfg tgbotapi.UpdateConfig = tgbotapi.NewUpdate(0)
-	ucfg.Timeout = 60
-	err = bot.UpdatesChan(ucfg)
-	// читаем обновления из канала
-	for {
-		select {
-		case update := <-bot.Updates:
-			// Пользователь, который написал боту
+	u := tgbotapi.NewUpdate(0)
+    u.Timeout = 30
+	updates, err := bot.GetUpdatesChan(u)
+    // читаем обновления из канала
+    for update := range updates {
+        			// Пользователь, который написал боту
 			UserName := update.Message.From.UserName
 
 			// ID чата/диалога.
@@ -40,8 +38,6 @@ func main() {
 			// Созадаем сообщение
 			msg := tgbotapi.NewMessage(ChatID, reply)
 			// и отправляем его
-			bot.SendMessage(msg)
-		}
-
-	}
+			bot.Send(msg)
+    }
 }
