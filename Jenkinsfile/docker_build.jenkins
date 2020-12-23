@@ -15,19 +15,19 @@ pipeline {
     stage("delete docker") {
       steps {
         echo " ========================= delete run docker images ==================="
-        sh 'sudo docker rm -f $(docker ps -a -q)'
+        sh 'docker rm -f $(docker ps -a -q)'
       }
     }
     stage("create docker image") {
       steps {
         echo " ========================= create docker image ==================="
-        sh 'sudo docker build -t my-go-app .'
+        sh 'docker build -t my-go-app .'
       }
     }
     stage("run docker") {
       steps {
         echo " ========================= run docker image ==================="
-        sh 'sudo docker run -d -p 8081:8081 my-go-app'
+        sh 'docker run -d -p 8081:8081 my-go-app'
       }
     }
   }
