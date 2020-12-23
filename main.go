@@ -4,6 +4,9 @@ import (
   "log"
 )
 
+
+var apiKey = os.Getenv("068cdf8b46b645699d4334764f7d54cf")
+
 func main() {
   // подключаемся к боту с помощью токена
   bot, err := tgbotapi.NewBotAPI("1455335552:AAGt66IORSVRDsDfQ9Fm40F5HKFzi-IR_6s")
@@ -33,7 +36,7 @@ func main() {
 
 			log.Printf("[%s] %d %s", UserName, ChatID, Text)
 
-			// Ответим пользователю его же сообщением
+			// Ответим пользователю его же сообщением.
 			reply := Text
 			// Созадаем сообщение
 			msg := tgbotapi.NewMessage(ChatID, reply)
