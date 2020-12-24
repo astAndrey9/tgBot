@@ -2,6 +2,8 @@ package main
 import (
   "github.com/Syfaro/telegram-bot-api"
   "log"
+  "github.com/ramsgoli/Golang-OpenWeatherMap"
+  "fmt"
 )
 
 
@@ -9,7 +11,11 @@ import (
 
 func main() {
   // подключаемся к боту с помощью токена
-  bot, err := tgbotapi.NewBotAPI("1455335552:AAGt66IORSVRDsDfQ9Fm40F5HKFzi-IR_6s")
+  	bot, err := tgbotapi.NewBotAPI("1455335552:AAGt66IORSVRDsDfQ9Fm40F5HKFzi-IR_6s")
+	owm := openweathermap.OpenWeatherMap{API_KEY: ("068cdf8b46b645699d4334764f7d54cf")}
+	  
+
+
 	if err != nil {
 		log.Panic(err)
 	}
@@ -30,14 +36,24 @@ func main() {
 			// Может быть идентификатором как чата с пользователем
 			// (тогда он равен UserID) так и публичного чата/канала
 			ChatID := update.Message.Chat.ID
-
 			// Текст сообщения
 			Text := update.Message.Text
 
+
+			var currentWeather *openweathermap.CurrentWeatherResponse
+
+			currentWeather, err = owm.CurrentWeatherFromCity(Text)
+
+
 			log.Printf("[%s] %d %s", UserName, ChatID, Text)
 
+
+			//s, _ := strconv.ParseFloat(string(currentWeather.Main.Temp), 64)
+
 			// Ответим пользователю его же сообщением.
-			reply := Text
+			deg := fmt.Sprintf("%f", currentWeather.Main.Temp)
+			reply := "The current temperature in " + currentWeather.Name + "is" + deg + "degrees\n" 
+			
 			// Созадаем сообщение
 			msg := tgbotapi.NewMessage(ChatID, reply)
 			// и отправляем его в ег
