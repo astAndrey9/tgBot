@@ -15,7 +15,8 @@ pipeline {
     stage("delete docker") {
       steps {
         echo " ========================= delete run docker images ==================="
-        sh 'docker rm -f $(docker ps -a -q)'
+        //sh 'docker rm -f $(docker ps -a -q)'
+        sh 'echo 322'
       }
     }
     stage("create docker image") {
