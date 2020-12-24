@@ -48,15 +48,12 @@ func main() {
 			log.Printf("[%s] %d %s", UserName, ChatID, Text)
 
 
-			//s, _ := strconv.ParseFloat(string(currentWeather.Main.Temp), 64)
-
-			// Ответим пользователю его же сообщением.
 			deg := fmt.Sprintf("%f", (currentWeather.Main.Temp - 32) / 1.8)
-			reply := "The current temperature in " + currentWeather.Name + " is " + deg + " degrees\n" 
+			reply := currentWeather.Name + ": " + deg + " degrees\n" 
 			
 			// Созадаем сообщение
 			msg := tgbotapi.NewMessage(ChatID, reply)
-			// и отправляем его в ег
+			// и отправляем его в тг dddd
 			bot.Send(msg)
     }
 }
