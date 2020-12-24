@@ -5,7 +5,6 @@ import (
 )
 
 
-var apiKey = os.Getenv("068cdf8b46b645699d4334764f7d54cf")
 
 func main() {
   // подключаемся к боту с помощью токена
