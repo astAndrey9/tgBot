@@ -6,6 +6,7 @@ import (
 
 
 
+
 func main() {
   // подключаемся к боту с помощью токена
   bot, err := tgbotapi.NewBotAPI("1455335552:AAGt66IORSVRDsDfQ9Fm40F5HKFzi-IR_6s")
@@ -39,7 +40,7 @@ func main() {
 			reply := Text
 			// Созадаем сообщение
 			msg := tgbotapi.NewMessage(ChatID, reply)
-			// и отправляем его
+			// и отправляем его в ег
 			bot.Send(msg)
     }
 }
