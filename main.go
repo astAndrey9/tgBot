@@ -5,8 +5,8 @@ import (
   "log"
   "github.com/ramsgoli/Golang-OpenWeatherMap"
   "fmt"
-  "math"
 )
+
 
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
 			///////
 			log.Printf("[%s] %d %s", UserName, ChatID, City)
 
-			deg := fmt.Sprintf("%f", (Round(currentWeather.Main.Temp) - 32) / 1.8)
+			deg := fmt.Sprintf("%.1f", (currentWeather.Main.Temp - 32) / 1.8)
 			weather := currentWeather.Name + ": " + deg + " degrees\n" 
 			// Созадаем сообщение
 			msg := tgbotapi.NewMessage(ChatID, weather)
@@ -44,3 +44,4 @@ func main() {
 			bot.Send(msg)
     }
 }
+
