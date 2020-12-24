@@ -51,8 +51,8 @@ func main() {
 			//s, _ := strconv.ParseFloat(string(currentWeather.Main.Temp), 64)
 
 			// Ответим пользователю его же сообщением.
-			deg := fmt.Sprintf("%f", currentWeather.Main.Temp)
-			reply := "The current temperature in " + currentWeather.Name + "is" + deg + "degrees\n" 
+			deg := fmt.Sprintf("%f", (currentWeather.Main.Temp - 32) / 1.8)
+			reply := "The current temperature in " + currentWeather.Name + " is " + deg + " degrees\n" 
 			
 			// Созадаем сообщение
 			msg := tgbotapi.NewMessage(ChatID, reply)
